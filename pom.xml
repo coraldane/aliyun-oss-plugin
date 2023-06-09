@@ -5,9 +5,9 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<version>1.593</version>
+		<version>2.7</version>
 	</parent>
-	<version>0.6</version>
+	<version>1.0.1</version>
 	<packaging>hpi</packaging>
 	<name>Aliyun OSS Plugin for Jenkins</name>
 	<description>Uploads build artifacts or downloads build dependencies using aliyun oss storage</description>
@@ -36,26 +36,31 @@
 		<dependency>
 			<groupId>com.aliyun.oss</groupId>
 			<artifactId>aliyun-sdk-oss</artifactId>
-			<version>2.0.2</version>
+			<version>3.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
-			<version>2.3</version>
+			<version>2.6</version>
 		</dependency>
+
 	</dependencies>
 
 	<repositories>
 		<repository>
 			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
+			<url>https://repo.jenkins-ci.org/public/</url>
+		</repository>
+		<repository>
+			<id>spring-plugin</id>
+			<url>https://maven.aliyun.com/repository/spring-plugin</url>
 		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
 			<id>repo.jenkins-ci.org</id>
-			<url>http://repo.jenkins-ci.org/public/</url>
+			<url>https://repo.jenkins-ci.org/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
@@ -64,7 +69,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5</version>
+				<version>3.0.0</version>
 			</plugin>
 		</plugins>
 	</build>
