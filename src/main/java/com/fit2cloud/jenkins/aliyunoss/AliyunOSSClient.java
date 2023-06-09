@@ -16,10 +16,10 @@ import java.util.StringTokenizer;
 public class AliyunOSSClient {
 	private static final String fpSeparator = ";";
 
-	public static boolean validateAliyunAccount(
+	public static boolean validateAliyunAccount(final String endpoint,
 			final String aliyunAccessKey, final String aliyunSecretKey) throws AliyunOSSException {
 		try {
-			OSSClient client = new OSSClient(aliyunAccessKey, aliyunSecretKey);
+			OSSClient client = new OSSClient(endpoint, aliyunAccessKey, aliyunSecretKey);
 			client.listBuckets();
 		} catch (Exception e) {
 			throw new AliyunOSSException("阿里云账号验证失败：" + e.getMessage());
@@ -28,10 +28,10 @@ public class AliyunOSSClient {
 	}
 
 
-	public static boolean validateOSSBucket(String aliyunAccessKey,
+	public static boolean validateOSSBucket(String endpoint, String aliyunAccessKey,
 											String aliyunSecretKey, String bucketName) throws AliyunOSSException{
 		try {
-			OSSClient client = new OSSClient(aliyunAccessKey, aliyunSecretKey);
+			OSSClient client = new OSSClient(endpoint, aliyunAccessKey, aliyunSecretKey);
 			client.getBucketLocation(bucketName);
 		} catch (Exception e) {
 			throw new AliyunOSSException("验证Bucket名称失败：" + e.getMessage());
@@ -41,10 +41,9 @@ public class AliyunOSSClient {
 
 	public static int upload(AbstractBuild<?, ?> build, BuildListener listener,
 							 final String aliyunAccessKey, final String aliyunSecretKey, final String aliyunEndPointSuffix, String bucketName,String expFP,String expVP) throws AliyunOSSException {
-		OSSClient client = new OSSClient(aliyunAccessKey, aliyunSecretKey);
-		String location = client.getBucketLocation(bucketName);
-		String endpoint = "http://" + location + aliyunEndPointSuffix;
-		client = new OSSClient(endpoint, aliyunAccessKey, aliyunSecretKey);
+		OSSClient client = new OSSClient(aliyunEndPointSuffix, aliyunAccessKey, aliyunSecretKey);
+		String endpoint = "http://" + bucketName + "." + aliyunEndPointSuffix;
+//		client = new OSSClient(endpoint, aliyunAccessKey, aliyunSecretKey);
 		int filesUploaded = 0; // Counter to track no. of files that are uploaded
 		try {
 			FilePath workspacePath = build.getWorkspace();
@@ -123,7 +122,7 @@ public class AliyunOSSClient {
 						}
 						long endTime = System.currentTimeMillis();
 						listener.getLogger().println("Uploaded object ["+ key + "] in " + getTime(endTime - startTime));
-						listener.getLogger().println("版本下载地址:"+"http://"+bucketName+"."+location+aliyunEndPointSuffix+"/"+key);
+						listener.getLogger().println("版本下载地址:"+"http://"+bucketName+"."+aliyunEndPointSuffix+"/"+key);
 						filesUploaded++;
 					}
 				}else {
