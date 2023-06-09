@@ -6,7 +6,7 @@ import org.junit.*;
 public class OssClientTest {
 
     private static final String ACCESS_KEY = "LTAI4FcuaSQnzvWfiZ56ZjEj";
-    private static final String SECRET_KEY = "************************";
+    private static final String SECRET_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
     @Test
     public void testCheckBucket() {

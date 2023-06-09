@@ -2,6 +2,10 @@ FIT2CLOUD Aliyun-OSS-Plugin for Jenkins
 ====================
 建立统一的artifacts仓库是后续的持续部署的前提。目前，建立artifacts仓库大致有如下三种选择：
 
+Fork自 https://github.com/fit2cloud/aliyun-oss-plugin 解决之前的项目不能验证bucket的问题，插件可以正常运行。   
+可以手动下载release版本 上传到jenkins 插件管理中上传，就可以使用   
+比官网的插件好用，不需要每次配置endpoint以及Access Key信息   
+
 1. FTP服务器：很多用户仍然在用这种方式存储Artifact
 2. 专业的Artifacts存储仓库：比如Nexus, Artifactory等。
 3. 对象存储服务：比如阿里云OSS，AWS S3等。如果用户的应用系统全部部署在阿里云中，那么使用阿里云OSS来建立artifacts仓库的好处是，a)可靠性、高可用性 b) 上传、下载速度快。
@@ -11,7 +15,7 @@ Jenkins是当前最常用的CI服务器，FIT2CLOUD Aliyun-OSS-Plugin for Jenkin
 一、安装说明
 -------------------------
 
-插件下载地址：https://github.com/fit2cloud/aliyun-oss-plugin/releases/download/v0.6/aliyun-oss-plugin-v0.6.hpi
+插件下载地址：https://github.com/coraldane/aliyun-oss-plugin/releases/download/v1.0.0/aliyun-oss-1.0.0.hpi
 在Jenkins中安装插件, 请到 Manage Jenkins | Advanced | Upload，上传插件(.hpi文件)
 安装完毕后请重新启动Jenkins
 
